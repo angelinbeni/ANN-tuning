@@ -1,4 +1,5 @@
-
+% contact - spaerixinfotech@gmail.com
+% www.spaerix.com
 clc;
 clear;
 close all;
@@ -25,14 +26,14 @@ calc = mean(error.^2)/mean(var(targets',1));
 % calculates MSE
 h = @(x) NMSE(x, net, inputs, targets);
 % running the particle swarm optimization algorithm with desired options
-[x1, BestCost,bestpso] = pso(h, size(wbb,1));
+
 [Convergence,x,bestbssa]=BSSA(h, size(wbb,1));
 figure;
-plot(real(BestCost),'r');hold on
+
 plot(real(Convergence),'g');hold on
 xlabel('Iterations')
 ylabel('objective value')
-legend('PSO','BSSA')
+
 net = setwb(net, x');
 % get the PSO optimized NN weights and bias
 getwb(net)
@@ -44,11 +45,10 @@ num = ones(Nsamp,1)/Nsamp;
 den = 1;
 qam=4;
 EbNo = 0:20; % Range of Eb/No values under study
-berpso = semianalytic(train_data,bestpso,'qam',qam,Nsamp,num,den,EbNo);
+
 berbssa = semianalytic(train_data,bestbssa,'qam',qam,Nsamp,num,den,EbNo);
 figure(); 
-semilogy(EbNo,berpso,'y-*','linewidth',2);hold on
+
 semilogy(EbNo,berbssa,'b-*','linewidth',2);hold on
-legend('PSO','BSSA')
 
 
