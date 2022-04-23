@@ -1,5 +1,4 @@
-% contact - spaerixinfotech@gmail.com
-% www.spaerix.com
+
 clc;
 clear;
 close all;
